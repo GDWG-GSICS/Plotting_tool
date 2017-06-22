@@ -7,7 +7,9 @@
   </a>
 </div>
 
+<div align="center">
 ![GSICS](src/org/eumetsat/usd/gcp/client/resources/images/GSICS_logo_OPE.jpg)
+</div>
 
 <h1 align="center">GSICS Plotting Tool</h1>
 
