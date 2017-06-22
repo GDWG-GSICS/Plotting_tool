@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="USC GSICS Products Plotting Tool Buildfile"
+         default="build"
+         basedir="."
+         xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <property name="jdk.version" value="1.6" />
+    <property name="src.dir" location="src" />
+    <property name="test.dir" location="test" />
+    <property name="test.src.dir" location="${test.dir}/src" />
+    <property name="lib.dir" location="lib" />
+    <property name="compile.lib.dir" location="${lib.dir}/compile" />
+    <property name="sdk.lib.dir" location="${lib.dir}/sdk" />
+    <property name="runtime.lib.dir" location="${lib.dir}/runtime" />
+    <property name="test.lib.dir" location="${lib.dir}/test" />
+    <property name="test.classes.dir" location="${test.dir}/classes" />
+    <property name="web.classes.dir" location="war/WEB-INF/classes" />
+    <property name="web.lib.dir" location="war/WEB-INF/lib" />
+    <property name="web.app.dir" location="war/plotter" />
+    <property name="report.dir" location="report" />
+    <property name="unit.cache.dir" location="gwt" />
+    <property name="conf.dir" value="war/server_resources/conf" />
+
+    <path id="project.class.path">
+        <pathelement location="${web.classes.dir}" />
+        <fileset dir="${compile.lib.dir}" includes="**/*.jar" />
+        <fileset dir="${sdk.lib.dir}" includes="**/*.jar" />
+    </path>
+
+    <path id="test.class.path">
+        <pathelement location="${test.classes.dir}" />
+        <pathelement location="${web.classes.dir}" />
+        <fileset dir="${test.lib.dir}" includes="**/*.jar" />
+        <fileset dir="${runtime.lib.dir}" includes="**/*.jar" />
+    </path>
+
+    <ivy:settings file="${user.home}/ivysettings.xml" />
+
+    <target name="resolve" description="Retrieve dependencies with ivy">
+        <mkdir dir="${compile.lib.dir}" />
+        <mkdir dir="${sdk.lib.dir}" />
+        <mkdir dir="${runtime.lib.dir}" />
+        <mkdir dir="${test.lib.dir}" />
+        <ivy:retrieve pattern="${ivy.lib.dir}/[conf]/[artifact]-[revision].[ext]" />
+    </target>
+
+    <target name="report-dependencies" depends="resolve">
+        <mkdir dir="report" />
+        <ivy:resolve type="${ivy.resolve.types}" />
+        <ivy:report todir="report" />
+    </target>
+
+    <target name="copy-libs" depends="resolve" description="Copy libs to WEB-INF/lib">
+        <mkdir dir="${web.lib.dir}" />
+        <copy todir="${web.lib.dir}">
+            <fileset dir="${runtime.lib.dir}" includes="**/*.jar" />
+        </copy>
+        <move file="${web.lib.dir}/gwt-servlet-2.7.0.jar" tofile="${web.lib.dir}/gwt-servlet.jar" />
+    </target>
+
+    <target name="compile" depends="copy-libs" description="Compile java source">
+        <mkdir dir="${web.classes.dir}" />
+        <javac deprecation="on"
+               srcdir="${src.dir}"
+               includes="**"
+               encoding="utf-8"
+               destdir="${web.classes.dir}"
+               source="${jdk.version}"
+               target="${jdk.version}"
+               nowarn="true"
+               debug="true"
+               debuglevel="lines,vars,source"
+               includeantruntime="false">
+            <classpath refid="project.class.path" />
+        </javac>
+        <copy todir="${web.classes.dir}">
+            <fileset dir="${src.dir}" excludes="**/*.java" />
+        </copy>
+    </target>
+
+    <target name="unit-test-compile" depends="resolve" description="Compile unit tests source">
+        <mkdir dir="${test.classes.dir}" />
+        <javac deprecation="on"
+               srcdir="${test.src.dir}"
+               includes="**"
+               encoding="utf-8"
+               destdir="${test.classes.dir}"
+               source="${jdk.version}"
+               target="${jdk.version}"
+               nowarn="true"
+               debug="true"
+               debuglevel="lines,vars,source"
+               includeantruntime="false">
+            <classpath refid="test.class.path" />
+            <classpath location="${web.classes.dir}" />
+        </javac>
+    </target>
+
+    <target name="unit-test" depends="compile, unit-test-compile">
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath refid="test.class.path" />
+            <formatter type="xml" />
+            <batchtest fork="yes" todir="${report.dir}">
+                <fileset dir="${test.src.dir}">
+                    <include name="**/*Test*.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="gwt-compile" depends="compile, unit-test" description="GWT compile to JavaScript">
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.Compiler">
+            <classpath>
+                <pathelement location="${src.dir}" />
+                <path refid="project.class.path" />
+            </classpath>
+            <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
+            <jvmarg value="-Xmx256M" />
+            <!-- Relocate unit cache to avoid it being included in the WAR. -->
+            <sysproperty key="gwt.persistentunitcachedir" value="${unit.cache.dir}" />
+            <!-- Disable persistent unit cache to avoid an increasing size WAR file. -->
+            <!-- <sysproperty key="gwt.persistentunitcache" value="false" /> -->
+            <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
+            <arg value="org.eumetsat.usd.gcp.plotter" />
+        </java>
+    </target>
+
+    <target name="devmode" depends="compile, unit-test" description="Run development mode">
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.DevMode">
+            <classpath>
+                <pathelement location="${src.dir}" />
+                <path refid="project.class.path" />
+            </classpath>
+            <jvmarg value="-Xmx512M" />
+            <arg value="-startupUrl" />
+            <arg value="plotter.html" />
+            <!--<arg value="-war" />
+	            <arg value=".\war" />
+	            <arg value="-logLevel" />
+	            <arg value="INFO" />
+	            <arg value="-codeServerPort" />
+	            <arg value="9997" />
+	            <arg value="-port" />
+	            <arg value="8000" />-->
+            <arg value="org.eumetsat.usd.gcp.plotter" />
+        </java>
+    </target>
+
+    <target name="superdevmode" depends="compile, unit-test" description="Run Super Dev Mode">
+        <java failonerror="true" fork="true" classname="com.google.gwt.dev.codeserver.CodeServer">
+            <classpath>
+                <pathelement location="${src.dir}" />
+                <path refid="project.class.path" />
+            </classpath>
+            <jvmarg value="-Xmx512M" />
+            <arg value="-src" />
+            <arg value="src" />
+            <arg value="-port" />
+            <arg value="9997" />
+            <arg value="org.eumetsat.usd.gcp.plotter" />
+        </java>
+    </target>
+
+    <target name="build" depends="compile, gwt-compile, unit-test" description="Build this project">
+        <zip destfile="plotter.war" basedir="war" />
+    </target>
+
+    <target name="clean" description="Cleans this project">
+        <delete dir="${web.classes.dir}" failonerror="true" />
+        <delete dir="${test.classes.dir}" failonerror="true" />
+        <delete dir="${web.lib.dir}" failonerror="true" />
+        <delete dir="${web.app.dir}" failonerror="true" />
+        <delete dir="${lib.dir}" failonerror="true" />
+    </target>
+
+    <!-- Binds schemas to JAXB pojos -->
+    <target name="bind-schemas" description="Generate Java bindings for configuration XML schemas.">
+        <exec executable="xjc">
+            <arg value="-d" />
+            <arg value="${src.dir}" />
+            <arg value="-p" />
+            <arg value="org.eumetsat.usd.gcp.server.conf.jaxb" />
+            <arg value="${conf.dir}/conf.xsd" />
+        </exec>
+    </target>
+
+    <!-- Export database schema -->
+    <path id="toolslib">
+        <path location=".ant/lib/dom4j-1.6.1.jar" />
+        <path location=".ant/lib/freemarker.jar" />
+        <path location=".ant/lib/hibernate3.jar" />
+        <path location=".ant/lib/hibernate-jpa-2.0-api-1.0.0.Final.jar" />
+        <path location=".ant/lib/hibernate-tools.jar" />
+        <path location=".ant/lib/log4j-1.2.15.jar" />
+        <path location=".ant/lib/commons-logging.jar" />
+        <path location=".ant/lib/slf4j-api-1.5.8.jar" />
+        <path location=".ant/lib/slf4j-log4j12-1.5.8.jar" />
+        <path location=".ant/lib/mysql-connector-java-5.1.13.jar" />
+    </path>
+    <taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="toolslib" />
+
+    <target name="export-db-schema" description="Export database schema to SQL script file." depends="compile">
+        <hibernatetool destdir="${server.resources.dir}" classpath="${web.classes.dir}">
+            <annotationconfiguration configurationfile="${src.dir}/hibernate.cfg.xml" />
+            <hbm2ddl drop="true"
+                     export="false"
+                     create="true"
+                     delimiter=";"
+                     format="true"
+                     outputfilename="create-tables.sql" />
+        </hibernatetool>
+    </target>
+
+</project>

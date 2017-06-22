@@ -1,0 +1,306 @@
+@url hBorderUrl hborder;
+@url helpUrl help;
+@external toggleButton, toggleButton-*, gwt-StackLayoutPanelHeader, gwt-StackLayoutPanelHeader-hovering, gwt-StackLayoutPanelContent, Caption, bg;
+	/**
+ * Layout CSS.
+ */
+body,table td,select {
+	font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans",
+		"Helvetica Neue", Arial, sans-serif;
+}
+
+.logo {
+	
+}
+
+.titleLabel {
+	color: #00229C;
+	font-weight: lighter;
+}
+
+.loginPanel {
+	float: right;
+	margin: 10px;
+}
+
+.configLabel {
+	font-weight: bold;
+	margin-top: 5px;
+	margin-bottom: 2px;
+}
+
+.valueRange {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#floater {
+	float: left;
+	height: 50%;
+	width: 18px;
+	margin-bottom: -4px;
+}
+
+.stackArrow {
+	float: left;
+	position: relative;
+	clear: both;
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+.headerLabel {
+	color: #00229C;
+	font-weight: lighter;
+}
+
+.configPanel {
+	border-bottom: 1px solid #bbbbbb;
+	float: left;
+	margin-left: 10px;
+	margin-top: 3px;
+}
+
+.configPanel .gwt-StackLayoutPanelHeader {
+	cursor: pointer;
+	cursor: hand;
+	font-size: medium;
+	padding: 1px;
+	border: 1px solid #bbbbbb;
+	border-bottom: 0px;
+	background: #d3def6 hBorderUrl repeat-x 0px -989px;
+}
+
+.configPanel .gwt-StackLayoutPanelHeader-hovering {
+	background: #d3def6 hBorderUrl repeat-x 0px -1464px;
+}
+
+.configPanel .gwt-StackLayoutPanelContent {
+	border: 1px solid #bbbbbb;
+	border-bottom: 0px;
+	background: white;
+	padding: 2px 2px 10px 5px;
+}
+
+.plotButtonPanel {
+	margin-top: 15px;
+	margin-left: 15px;
+}
+
+.sceneTbTextBox {
+	margin-left: 15px;
+}
+
+#div_graph {
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	top: 10px;
+	bottom: 10px;
+}
+
+.legend {
+	margin: 10px;
+}
+
+.text {
+    font-weight: light;
+    margin-bottom: 10px;
+}
+
+/**
+ * Widget's styles.
+ */
+.label {
+	font-weight: bold;
+}
+
+.button {
+    font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans",
+        "Helvetica Neue", Arial, sans-serif;
+    margin: 2px;
+    text-decoration: none;
+    background: hBorderUrl repeat-x 0px -27px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    border: 1px solid black;
+    cursor: pointer;
+    cursor: hand;
+    /* support IE6-8 */
+    padding: 1px 6px 1px 6px;
+    width: auto;
+    overflow: visible;
+}
+
+.button:enabled:active {
+    background-position: 0 -513px;
+    border: 1px inset #666;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.button:enabled:hover {
+    border: 1px solid black;
+    -moz-box-shadow: inset 0 0 5px #ff9900;
+    -webkit-box-shadow: inset 0 0 5px #ff9900;
+    box-shadow: inset 0 0 5px #ff9900;
+    cursor: pointer;
+    cursor: hand;
+}
+
+.button[disabled] {
+    border: 1px solid #bbb;
+    cursor: default;
+    opacity: .5;
+    zoom: 1;
+    filter: literal("alpha(opacity=45)");
+}
+
+.button:disabled:active {
+    border: 1px solid #bbb;
+    cursor: default;
+    opacity: .5;
+    zoom: 1;
+    filter: literal("alpha(opacity=45)");
+}
+
+.button:disabled:hover {
+    border: 1px solid #bbb;
+    cursor: default;
+    opacity: .5;
+    zoom: 1;
+    filter: literal("alpha(opacity=45)");
+}
+
+.toggleButton {
+	outline: none;
+}
+
+.toggleButton-up,.toggleButton-up-hovering,.toggleButton-up-disabled,.toggleButton-down,.toggleButton-down-hovering,.toggleButton-down-disabled
+	{
+	margin: 2px;
+	text-decoration: none;
+	background: hBorderUrl repeat-x 0px -27px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.toggleButton-up,.toggleButton-up-hovering,.toggleButton-up-disabled {
+	padding: 1px 6px 1px 6px;
+}
+
+.toggleButton-up {
+	border: 1px solid black;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.toggleButton-up-hovering {
+	border: 1px solid black;
+	-webkit-box-shadow: inset 0 0 5px #ff9900;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.toggleButton-up-disabled {
+	border: 1px solid #bbb;
+	cursor: default;
+	opacity: .5;
+	zoom: 1;
+	filter: literal("alpha(opacity=45)");
+}
+
+.toggleButton-down,.toggleButton-down-hovering,.toggleButton-down-disabled
+	{
+	padding: 1px 6px 1px 6px;
+}
+
+.toggleButton-down {
+	background-position: 0 -513px;
+	border: 1px inset #666;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.toggleButton-down-hovering {
+	background-position: 0 -513px;
+	border: 1px inset black;
+	-webkit-box-shadow: inset 0 0 5px #ff9900;;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.toggleButton-down-disabled {
+	background-position: 0 -513px;
+	border: 1px inset #ccc;
+	cursor: default;
+	opacity: .5;
+	zoom: 1;
+	filter: literal("alpha(opacity=45)");
+}
+
+/**
+ * Applied to popups.
+ */
+.popup {
+	box-shadow: 0px 5px 80px #505050;
+	-webkit-box-shadow: 0px 5px 80px #505050;
+	-moz-box-shadow: 0px 5px 80px #505050;
+	border: 1px solid #BCC1D0;
+	background-color: white;
+	border-radius: 2px;
+	padding: 0;
+	position: relative;
+	z-index: 10;
+}
+
+.popup .Caption {
+	background: -webkit-linear-gradient(white, #F8F8F8);
+	border-bottom: 1px solid rgba(188, 193, 208, .5);
+	font-size: small;
+	font-weight: bold;
+	color: #53637D;
+	text-shadow: white 0 1px 2px;
+	margin: 0;
+	padding: 10px 15px 8px 15px;
+}
+
+.popupLabel {
+	font-weight: normal;
+	font-size: small;
+	margin: 10px;
+	text-align: justify;
+	word-wrap: break-word;
+	max-width: 80em;
+}
+
+.errorDetailsLabel {
+	font-weight: lighter;
+	font-size: x-small;
+	margin: 10px;
+	text-align: left;
+}
+
+.errorMessage {
+	font-weight: normal;
+	font-size: small;
+	margin: 10px;
+	color: red;
+}
+
+.loginPopup {
+	margin: 10px;
+	width: 300px;
+	height: 150px;
+}
+
+img.bg { /* Set rules to fill background */
+	min-height: 100%;
+	/* Set up full screen scaling */
+	width: 100%;
+	height: 100%;
+	/* Set up positioning */
+	position: fixed;
+	top: 0;
+	left: 0;
+}

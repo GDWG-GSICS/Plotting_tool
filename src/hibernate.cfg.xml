@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gsics_plotter_db</property>
+    <property name="hibernate.connection.username">plotter</property>
+    <property name="hibernate.connection.password">plotter2012</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        
+        <!-- Use the C3P0 connection pool. -->
+    <property name="connection.provider_class">org.hibernate.service.jdbc.connections.internal.C3P0ConnectionProvider</property>
+    <property name="c3p0.acquire_increment">5</property>
+    <property name="c3p0.min_size">20</property>
+    <property name="c3p0.max_size">100</property>
+    <property name="c3p0.timeout">1800</property> <!-- seconds -->
+    <property name="c3p0.max_statements">200</property>
+    <property name="c3p0.idle_test_period">100</property> <!-- seconds --> 
+
+		<!-- Disable second-level cache. -->
+    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+    <property name="cache.use_query_cache">false</property>
+    <property name="cache.use_minimal_puts">false</property>
+    <property name="max_fetch_depth">3</property>
+
+		<!-- Print SQL to stdout. -->
+    <property name="show_sql">false</property>
+    <property name="format_sql">false</property>
+
+    <property name="javax.persistence.validation.mode">none</property>
+
+		<!-- Bind the getCurrentSession() method to the thread. -->
+    <property name="current_session_context_class">thread</property>
+
+    <mapping class="org.eumetsat.usd.gcp.server.persistence.User" />
+    <mapping class="org.eumetsat.usd.gcp.server.persistence.PlotConfiguration" />
+  </session-factory>
+</hibernate-configuration>

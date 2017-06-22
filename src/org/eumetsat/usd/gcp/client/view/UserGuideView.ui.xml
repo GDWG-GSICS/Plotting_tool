@@ -1,0 +1,15 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder' xmlns:g='urn:import:com.google.gwt.user.client.ui'
+  ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat' ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
+  ui:generateLocales='default'>
+
+  <ui:with field="resources" type="org.eumetsat.usd.gcp.client.resources.Resources" />
+
+  <g:DialogBox styleName="{resources.style.popup}" animationEnabled="true" glassEnabled="true" height="80%" width="80%">
+    <g:VerticalPanel horizontalAlignment="ALIGN_CENTER">
+      <g:Frame ui:field="frame" width="11.70in" height="7.48in"/>
+      <g:Button ui:field="closeButton" styleName="{resources.style.button}" text="Close" />
+    </g:VerticalPanel>
+  </g:DialogBox>
+</ui:UiBinder>

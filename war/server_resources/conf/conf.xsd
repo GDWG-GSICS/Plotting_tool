@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by EUMETSAT (EUMETSAT) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="configuration">
+		<xs:annotation>
+			<xs:documentation>Configuration of USC GSICS Plotting Tool.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="catalogs">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="catalog" type="CatalogType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="global_attributes_names">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="filename" type="xs:string"/>
+							<xs:element name="rad_to_tb_conv_formula" type="xs:string"/>
+							<xs:element name="tb_to_rad_conv_formula" type="xs:string"/>
+							<xs:element name="c1" type="xs:string"/>
+							<xs:element name="c2" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="global_attributes_defaults">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="rad_to_tb_conv_formula" type="xs:string"/>
+							<xs:element name="tb_to_rad_conv_formula" type="xs:string"/>
+							<xs:element name="c1" type="xs:double"/>
+							<xs:element name="c2" type="xs:double"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="variables_names">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="date" type="xs:string"/>
+							<xs:element name="channel_name" type="xs:string"/>
+							<xs:element name="offset" type="xs:string"/>
+							<xs:element name="offset_se" type="xs:string"/>
+							<xs:element name="slope" type="xs:string"/>
+							<xs:element name="slope_se" type="xs:string"/>
+							<xs:element name="covariance" type="xs:string"/>
+							<xs:element name="std_scene_tb" type="xs:string"/>
+							<xs:element name="alpha" type="xs:string"/>
+							<xs:element name="beta" type="xs:string"/>
+							<xs:element name="wnc" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="help_items">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="help_item" type="HelpItemType" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="CatalogType">
+		<xs:annotation>
+			<xs:documentation>Catalog Configuration</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="url" type="xs:string"/>
+			<xs:element name="validate" type="xs:boolean"/>
+		</xs:sequence>
+		<xs:attribute name="name" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="HelpItemType">
+		<xs:annotation>
+			<xs:documentation>Help Item</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="label" type="xs:string"/>
+			<xs:element name="description" type="xs:string"/>
+			<xs:element name="url" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,195 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder' xmlns:g='urn:import:com.google.gwt.user.client.ui'
+  xmlns:my='urn:import:org.eumetsat.usd.gcp.client.slider' ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+  ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator' ui:generateLocales='default'>
+
+  <ui:with field="resources" type="org.eumetsat.usd.gcp.client.resources.Resources" />
+
+  <g:DockLayoutPanel ui:field="rootPanel" unit="PX">
+    <g:north size="91">
+      <g:HorizontalPanel width="100%" verticalAlignment="ALIGN_MIDDLE">
+        <g:cell width="200px" height="50px">
+          <g:Image styleName="{resources.style.logo}" resource="{resources.eumetsatLogo}" />
+        </g:cell>
+        <g:cell width="202px" height="84px">
+          <g:Image styleName="{resources.style.logo}" resource="{resources.gsicsLogo}" />
+        </g:cell>
+        <g:HTMLPanel>
+          <h1 class="{resources.style.titleLabel}">GSICS Calibration Products Plotting Tool</h1>
+        </g:HTMLPanel>
+        <g:HTMLPanel styleName="{resources.style.loginPanel}">
+          <td>
+            <g:Label ui:field="loggedInLabel" styleName="{resources.style.label}" visible="false" />
+          </td>
+          <td>
+            <g:Button ui:field="logoutButton" styleName="{resources.style.button}" text="Logout" enabled="true"
+              visible="false" />
+          </td>
+          <td>
+            <g:Button ui:field="loginButton" styleName="{resources.style.button}" text="Login" enabled="true"
+              visible="true" />
+          </td>
+          <td>
+            <g:Button ui:field="registerButton" styleName="{resources.style.button}" text="Register" enabled="true"
+              visible="true" />
+          </td>
+        </g:HTMLPanel>
+      </g:HorizontalPanel>
+    </g:north>
+    <g:west size="338">
+      <g:StackLayoutPanel ui:field="menuStackPanel" unit="PX" styleName="{resources.style.configPanel}"
+        height="98%">
+        <g:stack>
+          <g:customHeader size="26">
+            <g:FlowPanel>
+              <g:HTMLPanel width="100%" height="100%">
+                <div id="floater"></div>
+                <g:Image styleName="{resources.style.stackArrow}" resource="{resources.downArrow}" />
+                <g:Label styleName="{resources.style.headerLabel}" text="Configuration and Plot" />
+              </g:HTMLPanel>
+            </g:FlowPanel>
+          </g:customHeader>
+          <g:ScrollPanel>
+            <g:VerticalPanel>
+              <g:Label styleName="{resources.style.configLabel}" text="GSICS Collaboration Server" />
+              <g:ListBox ui:field="serverListBox" />
+              <g:Label styleName="{resources.style.configLabel}" text="GSICS GPRC" />
+              <g:ListBox ui:field="gprcListBox" />
+              <g:Label styleName="{resources.style.configLabel}" text="Correction Type" />
+              <g:ListBox ui:field="corrTypeListBox" />
+              <g:Label styleName="{resources.style.configLabel}" text="Satellite/Instrument" />
+              <g:ListBox ui:field="satInstrListBox" />
+              <g:Label styleName="{resources.style.configLabel}" text="Reference Satellite/Instrument" />
+              <g:ListBox ui:field="refSatInstrListBox" />
+              <g:Label styleName="{resources.style.configLabel}" text="Mode" />
+              <g:ListBox ui:field="modeListBox" />
+              <g:Label styleName="{resources.style.configLabel}" text="Dataset Start Year" />
+              <g:ListBox ui:field="yearListBox" />
+              <g:Label styleName="{resources.style.configLabel}" text="Dataset Start Date-time (MM/dd hh:mm:ss)" />
+              <g:ListBox ui:field="dateTimeListBox" />
+              <g:Label styleName="{resources.style.configLabel}" text="Version" />
+              <g:ListBox ui:field="versionListBox" />
+              <g:Label styleName="{resources.style.configLabel}" text="Channel" />
+              <g:ListBox ui:field="channelListBox" />
+              <g:HorizontalPanel>
+                <g:Label styleName="{resources.style.configLabel}" text="Scene Brightness Temperature [K]" />
+                <g:TextBox ui:field="sceneTbMonitor" styleName="{resources.style.sceneTbTextBox}" text="200.0 K"
+                  readOnly="true" width="4em" textAlignment="RIGHT" />
+              </g:HorizontalPanel>
+              <my:SliderBar ui:field="sceneTbSliderBar" minValue="200.0" maxValue="300.0" />
+              <g:Label styleName="{resources.style.configLabel}" text="Bias Range (min - max) [K]" />
+              <g:HorizontalPanel>
+                <g:TextBox ui:field="minValueTextBox" styleName="{resources.style.valueRange}" width="4em"
+                  textAlignment="RIGHT" enabled="false" />
+                <g:Label text="-" />
+                <g:TextBox ui:field="maxValueTextBox" styleName="{resources.style.valueRange}" width="4em"
+                  textAlignment="RIGHT" enabled="false" />
+                <g:ToggleButton ui:field="autoValueRangeButton" styleName="toggleButton" text="Auto"
+                  down="true"
+                  title="Deactivate in order to manually set the bias range. Activate to set automatic bias range adapted to plotted datasets." />
+              </g:HorizontalPanel>
+              <g:HorizontalPanel styleName="{resources.style.plotButtonPanel}" verticalAlignment="ALIGN_MIDDLE">
+                <g:Button ui:field="plotButton" styleName="{resources.style.button}" text="Plot" enabled="false" />
+                <g:Button ui:field="clearButton" styleName="{resources.style.button}" text="Clear" enabled="false" />
+              </g:HorizontalPanel>
+            </g:VerticalPanel>
+          </g:ScrollPanel>
+        </g:stack>
+        <g:stack>
+          <g:customHeader size="26">
+            <g:FlowPanel>
+              <g:HTMLPanel width="100%" height="100%">
+                <div id="floater"></div>
+                <g:Image styleName="{resources.style.stackArrow}" resource="{resources.rightArrow}" />
+                <g:Label styleName="{resources.style.headerLabel}" text="Save and Load" />
+              </g:HTMLPanel>
+            </g:FlowPanel>
+          </g:customHeader>
+          <g:ScrollPanel>
+            <g:VerticalPanel>
+              <g:Label styleName="{resources.style.text}" text="Note: In order to save plots you need to login." />
+              <g:HorizontalPanel verticalAlignment="ALIGN_MIDDLE">
+                <g:TextBox ui:field="savedPlotNameTextBox" visibleLength="20" enabled="false"
+                  title="Enter some name here..." />
+                <g:Button ui:field="saveButton" styleName="{resources.style.button}" text="Save" enabled="false" />
+              </g:HorizontalPanel>
+              <g:Label styleName="{resources.style.configLabel}" text="Saved Plots" />
+              <g:ListBox ui:field="savedPlotConfigsListBox" visibleItemCount="1" width="24em" />
+              <g:FlowPanel>
+                <g:Button ui:field="plotSavedButton" styleName="{resources.style.button}" text="Plot Selected"
+                  enabled="true" />
+                <g:Button ui:field="removeSelectedButton" styleName="{resources.style.button}" text="Remove Selected"
+                  enabled="false" />
+                <g:Button ui:field="removeAllButton" styleName="{resources.style.button}" text="Remove All"
+                  enabled="false" />
+              </g:FlowPanel>
+            </g:VerticalPanel>
+          </g:ScrollPanel>
+        </g:stack>
+        <g:stack>
+          <g:customHeader size="26">
+            <g:FlowPanel>
+              <g:HTMLPanel width="100%" height="100%">
+                <div id="floater"></div>
+                <g:Image styleName="{resources.style.stackArrow}" resource="{resources.rightArrow}" />
+                <g:Label styleName="{resources.style.headerLabel}" text="Export" />
+              </g:HTMLPanel>
+            </g:FlowPanel>
+          </g:customHeader>
+          <g:ScrollPanel>
+            <g:VerticalPanel>
+              <g:Button ui:field="exportButton" styleName="{resources.style.button}" text="Export as PNG"
+                enabled="false" />
+              <g:Button ui:field="urlAccessButton" styleName="{resources.style.button}" text="Get Plot URL"
+                enabled="false" />
+              <g:Button ui:field="urlStaticAccessButton" styleName="{resources.style.button}" text="Get Static Plot URL"
+                enabled="false" />
+            </g:VerticalPanel>
+          </g:ScrollPanel>
+        </g:stack>
+        <g:stack>
+          <g:customHeader size="26">
+            <g:FlowPanel>
+              <g:HTMLPanel width="100%" height="100%">
+                <div id="floater"></div>
+                <g:Image ui:field="currentPlotsArrow" styleName="{resources.style.stackArrow}" resource="{resources.rightArrow}" />
+                <g:Label styleName="{resources.style.headerLabel}" text="Current Plots" />
+              </g:HTMLPanel>
+            </g:FlowPanel>
+          </g:customHeader>
+          <g:ScrollPanel>
+            <g:VerticalPanel ui:field="visibilityPanel" width="100%" height="100%" />
+          </g:ScrollPanel>
+        </g:stack>
+        <g:stack>
+          <g:customHeader size="26">
+            <g:FlowPanel>
+              <g:HTMLPanel width="100%" height="100%">
+                <div id="floater"></div>
+                <g:Image styleName="{resources.style.stackArrow}" resource="{resources.rightArrow}" />
+                <g:Label styleName="{resources.style.headerLabel}" text="Help" />
+              </g:HTMLPanel>
+            </g:FlowPanel>
+          </g:customHeader>
+          <g:ScrollPanel>
+            <g:VerticalPanel ui:field="helpPanel">
+              <g:Button ui:field="helpButton" styleName="{resources.style.button}" text="User Guide" />
+              <g:Label styleName="{resources.style.configLabel}" text="Useful Links" />
+            </g:VerticalPanel>
+          </g:ScrollPanel>
+        </g:stack>
+      </g:StackLayoutPanel>
+    </g:west>
+    <g:south size="156">
+      <g:ScrollPanel>
+        <g:HTMLPanel ui:field="legendPanel" styleName="{resources.style.legend}">
+          <div id="{resources.constants.legendDivId}"></div>
+        </g:HTMLPanel>
+      </g:ScrollPanel>
+    </g:south>
+    <g:center>
+      <g:AbsolutePanel ui:field="graphPanel" />
+    </g:center>
+  </g:DockLayoutPanel>
+</ui:UiBinder>

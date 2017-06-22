@@ -1,0 +1,40 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui' ui:generateFormat='com.google.gwt.i18n.rebind.format.PropertiesFormat'
+	ui:generateKeys='com.google.gwt.i18n.rebind.keygen.MD5KeyGenerator'
+	ui:generateLocales='default'>
+
+	<ui:with field="resources"
+		type="org.eumetsat.usd.gcp.client.resources.Resources" />
+
+	<g:PopupPanel styleName="{resources.style.popup}"
+		glassEnabled="true" animationEnabled="true">
+		<g:VerticalPanel ui:field="loginPanel"
+			styleName="{resources.style.loginPopup}">
+			<g:Label styleName="{resources.style.label}" text="User name" />
+			<g:TextBox ui:field="usernameTextBox" visibleLength="40"
+				focus="true" />
+			<g:Label styleName="{resources.style.label}" text="Password" />
+			<g:PasswordTextBox ui:field="passwordTextBox"
+				visibleLength="40" />
+			<g:Label styleName="{resources.style.label}" text="Confirm Password" />
+			<g:PasswordTextBox ui:field="confirmPasswordTextBox"
+				visibleLength="40" />
+			<g:Label ui:field="errorMessage" styleName="{resources.style.errorMessage}"
+				wordWrap="true" />
+			<g:HTMLPanel>
+				<tr>
+					<td align="left">
+						<g:Button styleName="{resources.style.button}"
+							ui:field="registerButton" text="Create New User" />
+					</td>
+					<td align="right">
+						<g:Button styleName="{resources.style.button}"
+							ui:field="cancelButton" text="Cancel" />
+					</td>
+				</tr>
+			</g:HTMLPanel>
+		</g:VerticalPanel>
+	</g:PopupPanel>
+</ui:UiBinder>
