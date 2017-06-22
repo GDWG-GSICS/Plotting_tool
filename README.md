@@ -12,11 +12,7 @@
 <br />
 
 ## Getting started
-Try it out here and check the [user guide]() if you need help using the tool.
-
-- [Demo][GSICS Plotting Tool Demo]
-- [User Guide]
-
+Try it out [here][GSICS Plotting Tool Demo] and check the [user guide] if you need help using the tool.
 
 
 [GSICS Homepage]:http://gsics.wmo.int/
