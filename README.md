@@ -1,6 +1,8 @@
 
 <div align="center">
-    [![GSICS](src/org/eumetsat/usd/gcp/client/resources/images/GSICS_logo_OPE.jpg)][GSICS  Homepage]
+  <a href=http://gsics.wmo.int/ alt="GSICS Homepage">
+    ![GSICS](src/org/eumetsat/usd/gcp/client/resources/images/GSICS_logo_OPE.jpg)
+  </a>
 </div>
 
 <h1 align="center">GSICS Plotting Tool</h1>
