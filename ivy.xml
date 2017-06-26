@@ -18,7 +18,8 @@ specific language governing permissions and limitations
 under the License.
 -->
 <ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+  xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+  xmlns:m="http://ant.apache.org/ivy/maven">
   <info organisation="org.eumetsat.usd" module="gcp" status="integration" />
   <configurations>
     <conf name="runtime" description="needed in servlet container" />
@@ -39,40 +40,45 @@ under the License.
     <dependency org="javax.xml.bind" name="jaxb-api" rev="2.1" conf="compile->default" />
     <dependency org="com.google.inject.extensions" name="guice-servlet" rev="3.0" conf="compile->default;runtime->default" />
     <dependency org="joda-time" name="joda-time" rev="2.2" conf="compile->default;runtime->default" />
-    <dependency org="commons-io" name="commons-io" rev="2.4" conf="compile->default;runtime->default" />
+    <dependency org="commons-io" name="commons-io" rev="2.5" conf="compile->default;runtime->default" />
     <dependency org="log4j" name="log4j" rev="1.2.17" conf="compile->default;runtime->default" />
     <dependency org="org.slf4j" name="slf4j-api" rev="1.7.6" conf="compile->default;runtime->default" />
-    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.6" conf="compile->default;runtime->default" />
-    <dependency org="org.slf4j" name="jul-to-slf4j" rev="1.7.6" conf="compile->default;runtime->default" />
+    <dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.21" conf="compile->default;runtime->default" />
+    <dependency org="org.slf4j" name="jul-to-slf4j" rev="1.7.21" conf="compile->default;runtime->default" />
     <!-- Server and client side shared dependencies. -->
-    <dependency org="com.google.guava" name="guava-gwt" rev="18.0" conf="compile->default;runtime->default">
+    <dependency org="com.google.guava" name="guava-gwt" rev="22.0" conf="compile->default;runtime->default">
        <exclude module="gwt-user"/>
        <exclude module="gwt-dev"/>
     </dependency>
     <!-- Client side dependencies. -->
     <dependency org="com.seanchenxi.gwt" name="gwt-storage" rev="1.3.0" conf="compile->default;runtime->default"/>
-    <dependency org="org.realityforge.gwt.appcache" name="gwt-appcache-client" rev="1.0.4" conf="compile->default;runtime->default"/>
-    <dependency org="org.realityforge.gwt.appcache" name="gwt-appcache-linker" rev="1.0.4" conf="compile->default;runtime->default"/>
-    <dependency org="org.realityforge.gwt.appcache" name="gwt-appcache-server" rev="1.0.4" conf="compile->default;runtime->default"/>
+    <dependency org="org.realityforge.gwt.appcache" name="gwt-appcache-client" rev="1.0.8" conf="compile->default;runtime->default"/>
+    <dependency org="org.realityforge.gwt.appcache" name="gwt-appcache-linker" rev="1.0.8" conf="compile->default;runtime->default"/>
+    <dependency org="org.realityforge.gwt.appcache" name="gwt-appcache-server" rev="1.0.8" conf="compile->default;runtime->default"/>
     <dependency org="com.wallissoftware" name="gwt-pushstate" rev="2.0.0" conf="compile->default;runtime->default">
        <exclude module="gwt-user"/>
     </dependency>
     <dependency org="com.google.gwt.inject" name="gin" rev="2.1.2" conf="compile->default;runtime->default" />
     <!-- GWT dependencies. -->
-    <dependency org="com.google.gwt" name="gwt-user" rev="2.7.0" conf="sdk->default" />
-    <dependency org="com.google.gwt" name="gwt-dev" rev="2.7.0" conf="sdk->default"/>
-    <dependency org="com.google.gwt" name="gwt-codeserver" rev="2.7.0" conf="sdk->default" />
-    <dependency org="com.google.gwt" name="gwt-servlet" rev="2.7.0" conf="runtime->default;" />
+    <dependency org="com.google.gwt" name="gwt-user" rev="2.8.0" conf="sdk->default" />
+    <dependency org="com.google.gwt" name="gwt-dev" rev="2.8.0" conf="sdk->default"/>
+    <dependency org="com.google.gwt" name="gwt-codeserver" rev="2.8.0" conf="sdk->default" />
+    <dependency org="com.google.gwt" name="gwt-servlet" rev="2.8.0" conf="runtime->default;" />
+    <!-- https://groups.google.com/forum/#!topic/Google-Web-Toolkit/BQjuqkaHNp8 Ivy downloads only sources of jsinterop -->
+    <dependency org="com.google.jsinterop" name="jsinterop-annotations" rev="1.0.1" >
+        <artifact name="jsinterop-annotations"/>
+        <artifact name="jsinterop-annotations" m:classifier="sources"/>
+    </dependency>
     <!-- GWTP Dependencies. -->
-    <dependency org="com.gwtplatform" name="gwtp-mvp-client" rev="1.4" conf="compile->default;runtime->default">
+    <dependency org="com.gwtplatform" name="gwtp-mvp-client" rev="1.6" conf="compile->default;runtime->default">
        <exclude module="gwt-user"/>
        <exclude module="gwt-dev"/>
     </dependency>
-    <dependency org="com.gwtplatform" name="gwtp-dispatch-rpc-client" rev="1.4" conf="compile->default;runtime->default">
+    <dependency org="com.gwtplatform" name="gwtp-dispatch-rpc-client" rev="1.6" conf="compile->default;runtime->default">
        <exclude module="gwt-user"/>
        <exclude module="gwt-dev"/>
     </dependency>
-    <dependency org="com.gwtplatform" name="gwtp-dispatch-rpc-server-guice" rev="1.4" conf="compile->default;runtime->default">
+    <dependency org="com.gwtplatform" name="gwtp-dispatch-rpc-server-guice" rev="1.6" conf="compile->default;runtime->default">
        <exclude module="gwt-user"/>
        <exclude module="gwt-dev"/>
     </dependency>

@@ -4,7 +4,7 @@
          basedir="."
          xmlns:ivy="antlib:org.apache.ivy.ant">
 
-    <property name="jdk.version" value="1.6" />
+    <property name="jdk.version" value="1.8" />
     <property name="src.dir" location="src" />
     <property name="test.dir" location="test" />
     <property name="test.src.dir" location="${test.dir}/src" />
@@ -34,14 +34,14 @@
         <fileset dir="${runtime.lib.dir}" includes="**/*.jar" />
     </path>
 
-    <ivy:settings file="${user.home}/ivysettings.xml" />
+    <ivy:settings file="ivysettings.xml" />
 
     <target name="resolve" description="Retrieve dependencies with ivy">
         <mkdir dir="${compile.lib.dir}" />
         <mkdir dir="${sdk.lib.dir}" />
         <mkdir dir="${runtime.lib.dir}" />
         <mkdir dir="${test.lib.dir}" />
-        <ivy:retrieve pattern="${ivy.lib.dir}/[conf]/[artifact]-[revision].[ext]" />
+        <ivy:retrieve pattern="${ivy.lib.dir}/[conf]/[artifact](-[classifier])-[revision].[ext]" />
     </target>
 
     <target name="report-dependencies" depends="resolve">
@@ -55,7 +55,7 @@
         <copy todir="${web.lib.dir}">
             <fileset dir="${runtime.lib.dir}" includes="**/*.jar" />
         </copy>
-        <move file="${web.lib.dir}/gwt-servlet-2.7.0.jar" tofile="${web.lib.dir}/gwt-servlet.jar" />
+        <move file="${web.lib.dir}/gwt-servlet-2.8.0.jar" tofile="${web.lib.dir}/gwt-servlet.jar" />
     </target>
 
     <target name="compile" depends="copy-libs" description="Compile java source">
@@ -115,7 +115,7 @@
                 <path refid="project.class.path" />
             </classpath>
             <!-- add jvmarg -Xss16M or similar if you see a StackOverflowError -->
-            <jvmarg value="-Xmx256M" />
+            <jvmarg value="-Xmx512M" />
             <!-- Relocate unit cache to avoid it being included in the WAR. -->
             <sysproperty key="gwt.persistentunitcachedir" value="${unit.cache.dir}" />
             <!-- Disable persistent unit cache to avoid an increasing size WAR file. -->
