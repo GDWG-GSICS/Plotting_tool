@@ -113,12 +113,12 @@ public class NetCDFCalibrationDataManagerTest
         NetcdfDataset netcdfDatasetMock = Mockito.mock(NetcdfDataset.class);
 
         // Global Attributes.
-        Attribute c1AttributeMock = Mockito.mock(Attribute.class);
-        Attribute c2AttributeMock = Mockito.mock(Attribute.class);
-        Attribute radToTbAttributeMock = Mockito.mock(Attribute.class);
-        Attribute tbToRadAttributeMock = Mockito.mock(Attribute.class);
-        Number c1NumberMock = Mockito.mock(Number.class);
-        Number c2NumberMock = Mockito.mock(Number.class);
+        Attribute c1AttributeMock = Mockito.mock(Attribute.class, Mockito.withSettings().stubOnly());
+        Attribute c2AttributeMock = Mockito.mock(Attribute.class, Mockito.withSettings().stubOnly());
+        Attribute radToTbAttributeMock = Mockito.mock(Attribute.class, Mockito.withSettings().stubOnly());
+        Attribute tbToRadAttributeMock = Mockito.mock(Attribute.class, Mockito.withSettings().stubOnly());
+        Number c1NumberMock = Mockito.mock(Number.class, Mockito.withSettings().stubOnly());
+        Number c2NumberMock = Mockito.mock(Number.class, Mockito.withSettings().stubOnly());
 
         Mockito.when(c1AttributeMock.getNumericValue()).thenReturn(c1NumberMock);
         Mockito.when(c2AttributeMock.getNumericValue()).thenReturn(c2NumberMock);
@@ -138,17 +138,17 @@ public class NetCDFCalibrationDataManagerTest
                 tbToRadAttributeMock);
 
         // Variables.
-        Variable channelVariableMock = Mockito.mock(Variable.class);
-        Variable dateVariableMock = Mockito.mock(Variable.class);
-        Variable offsetVariableMock = Mockito.mock(Variable.class);
-        Variable offsetSeVariableMock = Mockito.mock(Variable.class);
-        Variable slopeVariableMock = Mockito.mock(Variable.class);
-        Variable slopeSeVariableMock = Mockito.mock(Variable.class);
-        Variable covarianceVariableMock = Mockito.mock(Variable.class);
-        Variable stdSceneTbVariableMock = Mockito.mock(Variable.class);
-        Variable alphaVariableMock = Mockito.mock(Variable.class);
-        Variable betaVariableMock = Mockito.mock(Variable.class);
-        Variable wncVariableMock = Mockito.mock(Variable.class);
+        Variable channelVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
+        Variable dateVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
+        Variable offsetVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
+        Variable offsetSeVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
+        Variable slopeVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
+        Variable slopeSeVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
+        Variable covarianceVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
+        Variable stdSceneTbVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
+        Variable alphaVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
+        Variable betaVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
+        Variable wncVariableMock = Mockito.mock(Variable.class, Mockito.withSettings().stubOnly());
 
         char[] channel1DCharArray = { 'I', 'R', '0', '3', '9', 'I', 'R', '0', '6', '2', 'I', 'R', '0', '7', '3', 'I',
                 'R', '0', '8', '7', 'I', 'R', '0', '9', '7', 'I', 'R', '1', '0', '8', 'I', 'R', '1', '2', '0', 'I',
