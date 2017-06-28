@@ -24,6 +24,7 @@ For this approach, all the users contributing to the central remote repository a
 git clone https://github.com/GDWG-GSICS/Plotting_tool.git
 ```
 3. Perform your changes, committing to your local repository after each change:
+
    1. Add file for next commit (stage).
    ```
    git add path/to/file.ext
@@ -59,7 +60,6 @@ git clone https://github.com/GDWG-GSICS/Plotting_tool.git
 ant build
 ```
 5. If build has been successful, test the application by deploying the resulting <code>plotter.war</code> into your tomcat server.
-
 6. If test is successful, you can push your changes to the central remote repository:
    1. Check changes which are going to be pushed, and any possible conflicts with other contributors' changes.
    ```
