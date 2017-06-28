@@ -61,6 +61,7 @@ ant build
 ```
 5. If build has been successful, test the application by deploying the resulting <code>plotter.war</code> into your tomcat server.
 6. If test is successful, you can push your changes to the central remote repository:
+
    1. Check changes which are going to be pushed, and any possible conflicts with other contributors' changes.
    ```
    git fetch origin
