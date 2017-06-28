@@ -24,36 +24,36 @@ For this approach, all the users contributing to the central remote repository a
 git clone https://github.com/GDWG-GSICS/Plotting_tool.git
 ```
 3. Perform your changes, committing to your local repository after each change:
-a. Add file for next commit (stage).
-```
-git add path/to/file.ext
-```
-b. Remove file from next commit (unstage).
-```
-git reset path/to/file.ext
-```
-c. Remove file and add removal to next commit (remove and stage removal).
-```
-git rm path/to/file.ext
-```
-d. Check what is going to be included on next commit.
-```
-git status
-git diff --staged
-```
-e. Check specific changes on a file.
-```
-git diff path/to/file.ext
-```
-f. Revert changes.
-```
-git reset path/to/file.ext # if file has been already staged
-git checkout -- path/to/file.ext
-```
-g. Commit all staged changes.
-```
-git commit -m "<Commit comment>"
-```
+   1. Add file for next commit (stage).
+   ```
+   git add path/to/file.ext
+   ```
+   2. Remove file from next commit (unstage).
+   ```
+   git reset path/to/file.ext
+   ```
+   3. Remove file and add removal to next commit (remove and stage removal).
+   ```
+   git rm path/to/file.ext
+   ```
+   4. Check what is going to be included on next commit.
+   ```
+   git status
+   git diff --staged
+   ```
+   5. Check specific changes on a file.
+   ```
+   git diff path/to/file.ext
+   ```
+   6. Revert changes.
+   ```
+   git reset path/to/file.ext # if file has been already staged
+   git checkout -- path/to/file.ext
+   ```
+   7. Commit all staged changes.
+   ```
+   git commit -m "<Commit comment>"
+   ```
 4. Build the project with ant.
 ```
 ant build
@@ -62,17 +62,17 @@ ant build
 
 6. If test is successful, you can push your changes to the central remote repository:
    1. Check changes which are going to be pushed, and any possible conflicts with other contributors' changes.
-```
-git fetch origin
-git diff origin/master
-```
+   ```
+   git fetch origin
+   git diff origin/master
+   ```
    2. Solve the conflicts if any and commit modified files.
-d. If there were other contributors' changes fetched, rebuild the project and retest (steps 4. and 5.).
-   3. Push your changes to the central remote repository.
-```
-git pull origin master
-git push
-```
+   3. If there were other contributors' changes fetched, rebuild the project and retest (steps 4. and 5.).
+   4. Push your changes to the central remote repository.
+   ```
+   git pull origin master
+   git push
+   ```
 
 ## How to Undo a contribution
 In order to undo a specific commit already pushed to the central remote repository, follow these steps:
