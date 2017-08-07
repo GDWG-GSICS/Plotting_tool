@@ -767,10 +767,10 @@ public class NetCDFCalibrationDataManager implements CalibrationDataManager
                 CalibrationPacket dataPacket = data.getCalibrationPacket(date);
 
                 // For each added source...
-                for (String sourceName : dataForUser(userID).addedSources().keySet())
+                for (Map.Entry<String, String> source : dataForUser(userID).addedSources().entrySet())
                 {
                     // Get cal record.
-                    CalibrationRecord calRecord = dataPacket.getRecord(sourceName);
+                    CalibrationRecord calRecord = dataPacket.getRecord(source.getKey());
 
                     if (calRecord != null)
                     {
